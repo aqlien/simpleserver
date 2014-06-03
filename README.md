@@ -1,6 +1,6 @@
 # Simpleserver
 
-TODO: Write a gem description
+A very simple web server, able to find html files located in the same directory from its run location.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After installation, run `$ simpleserver` from the directory where the html files you want to serve are located. Then, in your web browser, navigate to your IP at the port the webserver is set to (the defaut is 1337). Then, simply append the path to the file you want after the backslash.
 
 ## Contributing
 
