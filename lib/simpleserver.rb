@@ -15,20 +15,22 @@ module Simpleserver
 
       if File.file?(path)
         body = File.open(path, "r"){|file| file.read}
-        status = "200 OK"
+        @status = "200 OK"
       else
         body = "File not found\n"
-        status = "404 Not Found"
+        @status = "404 Not Found"
       end
 
-      response = "#{protocol} #{status}\n"
-      response += "Content-Type: text/html\n"
-      response += "Content-Length: #{body.length}\n"
-      response += "Connection: close\n\n"
-      response += body
-
-      client.puts response
+      client.puts buildResponse(protocol, body)
       client.close
     end
+  end
+
+  def buildResponse(protocol, body)
+    response = "#{protocol} #{@status}\n"
+    response += "Content-Type: text/html\n"
+    response += "Content-Length: #{body.length}\n"
+    response += "Connection: close\n\n"
+    response += body
   end
 end
