@@ -21,16 +21,14 @@ module Simpleserver
         @status = "404 Not Found"
       end
 
-      client.puts buildResponse(protocol, body)
+      response = "#{protocol} #{@status}\n"
+      response += "Content-Type: text/html\n"
+      response += "Content-Length: #{body.length}\n"
+      response += "Connection: close\n\n"
+      response += body
+
+      client.puts response
       client.close
     end
-  end
-
-  def buildResponse(protocol, body)
-    response = "#{protocol} #{@status}\n"
-    response += "Content-Type: text/html\n"
-    response += "Content-Length: #{body.length}\n"
-    response += "Connection: close\n\n"
-    response += body
   end
 end
